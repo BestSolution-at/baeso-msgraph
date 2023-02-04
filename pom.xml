@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>at.bestsolution.baeso.msgraph</groupId>
+	<artifactId>msgraph-parent</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>msgraph-impl</module>
+		<module>msgraph-api</module>
+		<module>msgraph-msgraph-util</module>
+		<module>msgraph-auth-msal4j</module>
+		<module>msgraph-auth-azure-identity</module>
+		<module>msgraph-sample</module>
+	</modules>
+
+	<properties>
+		<revision>999.9.0-SNAPSHOT</revision>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.microsoft.graph</groupId>
+				<artifactId>microsoft-graph</artifactId>
+				<version>5.45.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>5.8.2</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>msal4j</artifactId>
+				<version>1.13.3</version>
+			</dependency>
+			<dependency>
+				<groupId>jakarta.json</groupId>
+				<artifactId>jakarta.json-api</artifactId>
+				<version>2.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish</groupId>
+				<artifactId>jakarta.json</artifactId>
+				<version>2.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>com.azure</groupId>
+				<artifactId>azure-identity</artifactId>
+				<version>1.7.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
