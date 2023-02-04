@@ -9,8 +9,22 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>jakarta.json</artifactId>
+    </dependency>
+    <dependency>
       <groupId>at.bestsolution.baeso.msgraph</groupId>
       <artifactId>msgraph-api</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>at.bestsolution.baeso.msgraph</groupId>
+      <artifactId>msgraph-impl</artifactId>
+      <version>${revision}</version>
+    </dependency>
+    <dependency>
+      <groupId>at.bestsolution.baeso.msgraph</groupId>
+      <artifactId>msgraph-auth-msal4j</artifactId>
       <version>${revision}</version>
     </dependency>
   </dependencies>
