@@ -2,7 +2,10 @@ package at.bestsolution.baeso.msgraph.impl;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -11,11 +14,16 @@ import at.bestsolution.baeso.msgraph.UserResource;
 import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.impl.model.UserImpl;
 import at.bestsolution.baeso.msgraph.impl.utils.PagingSpliterator;
+import at.bestsolution.baeso.msgraph.impl.utils.QueryImpl;
+import at.bestsolution.baeso.msgraph.impl.utils.QueryParam;
 import at.bestsolution.baeso.msgraph.model.User;
 import jakarta.json.Json;
+import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonGenerator;
 
 public class UserResourceImpl implements UserResource {
+	private final String baseUrl = "https://graph.microsoft.com/v1.0/users";
+
 	private final GraphClientImpl client;
 	
 	public UserResourceImpl(GraphClientImpl client) {
@@ -23,41 +31,24 @@ public class UserResourceImpl implements UserResource {
 	}
 
 	@Override
-	public Q query() {
-		return new QImpl();
+	public UserQuery query() {
+		return new UserQueryImpl(baseUrl, client);
 	}
 
-	class QImpl implements Q {
-		
-		@Override
-		public Stream<User> stream() {
-			return stream(20);
-		}
-		
-		@Override
-		public Stream<User> stream(int pageSize) {
-			HttpRequest request = HttpRequest.newBuilder()
-					  .uri(URI.create(String.format("https://graph.microsoft.com/v1.0/users?$top=%s&$count=true", pageSize)))
-					  .header("Authorization", "Bearer " + client.provider.getAccessToken(null).join())
-					  .GET()
-					  .build();
-			var result = client.sendRequest(request);
-			var array = result.getJsonArray("value");
-			
-			Json.createWriterFactory(Map.of(JsonGenerator.PRETTY_PRINTING, true)).createWriter(System.err).write(result);
-			
-			if( array.size() == 0 ) {
-				return Stream.empty();
-			}
-			
-			return StreamSupport.stream(new PagingSpliterator<>(client, result, UserImpl::new), false);
+	static class UserQueryImpl extends QueryImpl<User> implements UserQuery {
+
+		public UserQueryImpl(String baseUrl, GraphClientImpl client) {
+			super(baseUrl, client, UserImpl::new);
 		}
 	}
 
 	@Override
 	public CalendarResource calendars(ID<User> user) {
-		// TODO Auto-generated method stub
-		return null;
+		return new CalendarResourceImpl(this.client, user.id);
 	}
 	
+	@Override
+	public CalendarResource calendars(String userPrincipalName) {
+		return new CalendarResourceImpl(this.client, userPrincipalName);
+	}
 }

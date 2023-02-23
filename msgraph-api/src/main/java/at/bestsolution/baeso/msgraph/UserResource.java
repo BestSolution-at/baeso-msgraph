@@ -5,11 +5,12 @@ import at.bestsolution.baeso.msgraph.base.Query;
 import at.bestsolution.baeso.msgraph.model.User;
 
 public interface UserResource {
-	public interface Q extends Query<User> {
+	public interface UserQuery extends Query<User> {
 		
 	}
 	
 	public CalendarResource calendars(ID<User> user);
+	public CalendarResource calendars(String userPrincipalName);
 	
-	public Q query();
+	public UserQuery query();
 }

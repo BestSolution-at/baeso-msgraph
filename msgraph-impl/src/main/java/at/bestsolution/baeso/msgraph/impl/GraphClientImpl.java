@@ -29,6 +29,7 @@ public class GraphClientImpl implements GraphClient {
 	}
 
 	public JsonObject GET(String url) {
+		// System.err.println(provider.getAccessToken(url).join());
 		HttpRequest request = HttpRequest.newBuilder()
 				  .uri(URI.create(url))
 				  .header("Authorization", "Bearer " + provider.getAccessToken(url).join())
@@ -40,7 +41,9 @@ public class GraphClientImpl implements GraphClient {
 	public JsonObject sendRequest(HttpRequest request) {
 		try {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-			var reader = Json.createReader(new StringReader(response.body()));
+			var responseBody = response.body();
+			System.err.println(responseBody);
+			var reader = Json.createReader(new StringReader(responseBody));
 			return reader.readObject();
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);

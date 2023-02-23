@@ -13,6 +13,17 @@
 		<module>msgraph-sample</module>
 	</modules>
 
+	<distributionManagement>
+		<repository>
+			<id>beso-private-releases</id>
+			<url>http://nexus.ci.bestsolution.at:8081/repository/beso-private-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>beso-private-snapshots</id>
+			<url>http://nexus.ci.bestsolution.at:8081/repository/beso-private-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<properties>
 		<revision>999.9.0-SNAPSHOT</revision>
 		<maven.compiler.source>17</maven.compiler.source>
