@@ -7,6 +7,7 @@ import at.bestsolution.baeso.msgraph.spi.GraphClientFactory;
 
 public interface GraphClient {
 	public UserResource users();
+	public <T> T createBuilder(Class<T> clazz);
 
 	public static GraphClient create(AccessTokenProvider accessTokenProvider) {
 		return ServiceLoader.load(GraphClientFactory.class)

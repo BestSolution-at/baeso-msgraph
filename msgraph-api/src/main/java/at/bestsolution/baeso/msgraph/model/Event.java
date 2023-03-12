@@ -14,7 +14,7 @@ public interface Event {
      * Case-sensitive and read-only.
      * @return value
      */
-    ID<String> id();
+    ID<Event> id();
     /**
      * The start date, time in the local time zone
      * @return value
@@ -61,4 +61,12 @@ public interface Event {
     // boolean isReminderOn();
     // ZonedDateTime lastModifiedDateTime();
     
+    public interface Builder {
+        public Event build();
+        public Builder start(ZonedDateTime start);
+        public Builder end(ZonedDateTime end);
+        public Builder subject(String subject);
+        public Builder allowNewTimeProposals(boolean allowNewTimeProposals);
+        // public Builder body();
+    }
 }

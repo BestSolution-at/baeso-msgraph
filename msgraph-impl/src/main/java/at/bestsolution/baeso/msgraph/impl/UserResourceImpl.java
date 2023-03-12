@@ -9,6 +9,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import at.bestsolution.baeso.msgraph.CalendarGroupResource;
 import at.bestsolution.baeso.msgraph.CalendarResource;
 import at.bestsolution.baeso.msgraph.UserResource;
 import at.bestsolution.baeso.msgraph.base.ID;
@@ -17,9 +18,9 @@ import at.bestsolution.baeso.msgraph.impl.utils.PagingSpliterator;
 import at.bestsolution.baeso.msgraph.impl.utils.QueryImpl;
 import at.bestsolution.baeso.msgraph.impl.utils.QueryParam;
 import at.bestsolution.baeso.msgraph.model.User;
-import jakarta.json.Json;
-import jakarta.json.JsonObject;
-import jakarta.json.stream.JsonGenerator;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.stream.JsonGenerator;
 
 public class UserResourceImpl implements UserResource {
 	private final String baseUrl = "https://graph.microsoft.com/v1.0/users";
@@ -50,5 +51,15 @@ public class UserResourceImpl implements UserResource {
 	@Override
 	public CalendarResource calendars(String userPrincipalName) {
 		return new CalendarResourceImpl(this.client, userPrincipalName);
+	}
+
+	@Override
+	public CalendarGroupResource calendarGroups(ID<User> user) {
+		return new CalendarGroupResourceImpl(this.client, user.id);
+	}
+
+	@Override
+	public CalendarGroupResource calendarsGroups(String userPrincipalName) {
+		return new CalendarGroupResourceImpl(this.client, userPrincipalName);
 	}
 }

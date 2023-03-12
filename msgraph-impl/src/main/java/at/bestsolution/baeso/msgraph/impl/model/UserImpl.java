@@ -2,7 +2,7 @@ package at.bestsolution.baeso.msgraph.impl.model;
 
 import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.model.User;
-import jakarta.json.JsonObject;
+import javax.json.JsonObject;
 
 public class UserImpl implements User {
 	private JsonObject object;

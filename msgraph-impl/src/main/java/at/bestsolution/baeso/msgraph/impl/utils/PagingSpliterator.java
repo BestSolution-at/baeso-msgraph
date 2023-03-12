@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 import at.bestsolution.baeso.msgraph.impl.GraphClientImpl;
-import jakarta.json.JsonObject;
+import javax.json.JsonObject;
 
 public class PagingSpliterator<T> extends AbstractSpliterator<T> {
 		private final GraphClientImpl client;

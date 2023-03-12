@@ -2,7 +2,7 @@ package at.bestsolution.baeso.msgraph.impl.model;
 
 import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.model.Calendar;
-import jakarta.json.JsonObject;
+import javax.json.JsonObject;
 
 public class CalendarImpl implements Calendar {
     private final JsonObject object;

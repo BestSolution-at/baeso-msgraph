@@ -1,7 +1,7 @@
 package at.bestsolution.baeso.msgraph.impl.model;
 
 import at.bestsolution.baeso.msgraph.model.ItemBody;
-import jakarta.json.JsonObject;
+import javax.json.JsonObject;
 
 public class ItemBodyImpl implements ItemBody {
     private final JsonObject object;

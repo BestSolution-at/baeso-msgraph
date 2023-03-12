@@ -11,6 +11,9 @@ public interface UserResource {
 	
 	public CalendarResource calendars(ID<User> user);
 	public CalendarResource calendars(String userPrincipalName);
+
+	public CalendarGroupResource calendarGroups(ID<User> user);
+	public CalendarGroupResource calendarsGroups(String userPrincipalName);
 	
 	public UserQuery query();
 }
