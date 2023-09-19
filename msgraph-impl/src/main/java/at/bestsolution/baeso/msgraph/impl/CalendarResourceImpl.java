@@ -13,10 +13,10 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import at.bestsolution.baeso.msgraph.CalendarResource;
+import at.bestsolution.baeso.msgraph.EventResource;
 import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.impl.model.CalendarImpl;
 import at.bestsolution.baeso.msgraph.impl.model.EventImpl;
-import at.bestsolution.baeso.msgraph.impl.utils.JsonUtils;
 import at.bestsolution.baeso.msgraph.impl.utils.PagingSpliterator;
 import at.bestsolution.baeso.msgraph.impl.utils.QueryImpl;
 import at.bestsolution.baeso.msgraph.impl.utils.QueryParam;
@@ -56,11 +56,15 @@ public class CalendarResourceImpl implements CalendarResource {
     }
 
     @Override
-    public Event create(ID<Calendar> calendar, Event event) {
-        var uri = this.baseUrl + "/" + calendar.id + "/events";
-        var result = this.client.POST(uri, ((EventImpl)event).object);
-        System.err.println(JsonUtils.stringify(result, true));
-        return new EventImpl(result);
+    public EventResource events(ID<Calendar> calendar) {
+        return new EventResourceImpl(client, baseUrl + "/" + calendar.id);
+    }
+
+    @Override
+    public Calendar create(Calendar calendar) {
+        var uri = this.baseUrl;
+        var result = this.client.POST(uri, ((CalendarImpl)calendar).object);
+        return new CalendarImpl(result);
     }
     
     static class CalendarQueryImpl extends QueryImpl<Calendar> implements CalendarQuery {

@@ -4,7 +4,7 @@ import at.bestsolution.baeso.msgraph.model.ItemBody;
 import javax.json.JsonObject;
 
 public class ItemBodyImpl implements ItemBody {
-    private final JsonObject object;
+    public final JsonObject object;
 
     public ItemBodyImpl(JsonObject object) {
         this.object = object;

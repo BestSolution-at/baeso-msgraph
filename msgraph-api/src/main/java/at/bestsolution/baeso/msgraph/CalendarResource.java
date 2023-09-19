@@ -17,9 +17,11 @@ public interface CalendarResource {
 
     public CalendarQuery query();
 
-    public Event create(ID<Calendar> calendar, Event event);
+    public Calendar create(Calendar calendar);
+    public EventResource events(ID<Calendar> calendar);
 
     public Stream<Event> view(ID<Calendar> calendar, LocalDate start, LocalDate end);
     public Stream<Event> view(ID<Calendar> calendar, LocalDateTime start, LocalDateTime end);
     // public Stream<Event> view(ID<Calendar> calendar, ChronoZonedDateTime<?> start, ChronoZonedDateTime<?> end);
+    
 }

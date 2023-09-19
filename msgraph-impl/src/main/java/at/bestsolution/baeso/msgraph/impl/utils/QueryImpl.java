@@ -36,6 +36,7 @@ public class QueryImpl<T> implements Query<T> {
 
         var uri = baseUrl + "?" + QueryParam.toQueryString(queryParmeters);
         
+        System.err.println(uri);
         var result = client.GET(uri);
         var array = result.getJsonArray("value");
 			
