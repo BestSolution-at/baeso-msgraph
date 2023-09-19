@@ -27,9 +27,9 @@ public class CalendarResourceImpl implements CalendarResource {
     private final String baseUrl;
     private final GraphClientImpl client;
 
-    public CalendarResourceImpl(GraphClientImpl client, String idOrPrincipal) {
+    public CalendarResourceImpl(GraphClientImpl client, String baseUrl) {
         this.client = client;
-        this.baseUrl = String.format("https://graph.microsoft.com/v1.0/users/%s/calendars", idOrPrincipal);
+        this.baseUrl = baseUrl;
     }
 
     @Override

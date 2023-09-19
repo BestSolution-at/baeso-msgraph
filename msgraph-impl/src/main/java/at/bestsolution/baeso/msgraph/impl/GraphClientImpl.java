@@ -12,6 +12,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 
 import at.bestsolution.baeso.msgraph.GraphClient;
 import at.bestsolution.baeso.msgraph.UserResource;
+import at.bestsolution.baeso.msgraph.UsersResource;
 import at.bestsolution.baeso.msgraph.auth.AccessTokenProvider;
 import at.bestsolution.baeso.msgraph.impl.model.AttendeeImpl;
 import at.bestsolution.baeso.msgraph.impl.model.CalendarImpl;
@@ -27,8 +28,6 @@ import at.bestsolution.baeso.msgraph.model.EventUpdate;
 
 import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.stream.JsonGenerator;
-import javax.json.stream.JsonGeneratorFactory;
 
 public class GraphClientImpl implements GraphClient {
 	final AccessTokenProvider provider;
@@ -40,8 +39,8 @@ public class GraphClientImpl implements GraphClient {
 	}
 
 	@Override
-	public UserResource users() {
-		return new UserResourceImpl(this);
+	public UsersResource users() {
+		return new UsersResourceImpl(this);
 	}
 
 	public <T> T createBuilder(Class<T> clazz) {

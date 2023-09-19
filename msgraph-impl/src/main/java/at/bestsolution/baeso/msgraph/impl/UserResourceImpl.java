@@ -23,43 +23,21 @@ import javax.json.JsonObject;
 import javax.json.stream.JsonGenerator;
 
 public class UserResourceImpl implements UserResource {
-	private final String baseUrl = "https://graph.microsoft.com/v1.0/users";
-
 	private final GraphClientImpl client;
+	private final String baseUrl;
 	
-	public UserResourceImpl(GraphClientImpl client) {
+	public UserResourceImpl(GraphClientImpl client, String baseUrl) {
 		this.client = client;
+		this.baseUrl = baseUrl;
 	}
 
 	@Override
-	public UserQuery query() {
-		return new UserQueryImpl(baseUrl, client);
-	}
-
-	static class UserQueryImpl extends QueryImpl<User> implements UserQuery {
-
-		public UserQueryImpl(String baseUrl, GraphClientImpl client) {
-			super(baseUrl, client, UserImpl::new);
-		}
-	}
-
-	@Override
-	public CalendarResource calendars(ID<User> user) {
-		return new CalendarResourceImpl(this.client, user.id);
+	public CalendarResource calendars() {
+		return new CalendarResourceImpl(this.client, this.baseUrl + "/calendars");
 	}
 	
 	@Override
-	public CalendarResource calendars(String userPrincipalName) {
-		return new CalendarResourceImpl(this.client, userPrincipalName);
-	}
-
-	@Override
-	public CalendarGroupResource calendarGroups(ID<User> user) {
-		return new CalendarGroupResourceImpl(this.client, user.id);
-	}
-
-	@Override
-	public CalendarGroupResource calendarsGroups(String userPrincipalName) {
-		return new CalendarGroupResourceImpl(this.client, userPrincipalName);
+	public CalendarGroupResource calendarGroups() {
+		return new CalendarGroupResourceImpl(this.client, this.baseUrl + "/calendarGroups");
 	}
 }
