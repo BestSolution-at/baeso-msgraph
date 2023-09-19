@@ -1,6 +1,5 @@
 package at.bestsolution.baeso.msgraph.impl;
 
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -13,14 +12,10 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import at.bestsolution.baeso.msgraph.CalendarResource;
-import at.bestsolution.baeso.msgraph.EventResource;
-import at.bestsolution.baeso.msgraph.base.ID;
-import at.bestsolution.baeso.msgraph.impl.model.CalendarImpl;
+import at.bestsolution.baeso.msgraph.EventsResource;
 import at.bestsolution.baeso.msgraph.impl.model.EventImpl;
 import at.bestsolution.baeso.msgraph.impl.utils.PagingSpliterator;
-import at.bestsolution.baeso.msgraph.impl.utils.QueryImpl;
 import at.bestsolution.baeso.msgraph.impl.utils.QueryParam;
-import at.bestsolution.baeso.msgraph.model.Calendar;
 import at.bestsolution.baeso.msgraph.model.Event;
 
 public class CalendarResourceImpl implements CalendarResource {
@@ -33,44 +28,28 @@ public class CalendarResourceImpl implements CalendarResource {
     }
 
     @Override
-    public CalendarQuery query() {
-        return new CalendarQueryImpl(baseUrl, client);
+    public Stream<Event> view(LocalDate start, LocalDate end) {
+        return view(LocalDateTime.of(start, LocalTime.MIN), LocalDateTime.of(end, LocalTime.MAX));
     }
 
     @Override
-    public Stream<Event> view(ID<Calendar> calendar, LocalDate start, LocalDate end) {
-        return view(calendar, LocalDateTime.of(start, LocalTime.MIN), LocalDateTime.of(end, LocalTime.MAX));
-    }
-
-    @Override
-    public Stream<Event> view(ID<Calendar> calendar, LocalDateTime start, LocalDateTime end) {
+    public Stream<Event> view(LocalDateTime start, LocalDateTime end) {
         List<QueryParam> parameters = new ArrayList<>(2);
-        var startDateTime = ZonedDateTime.of(start, ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX"));
-        var endDateTime = ZonedDateTime.of(end, ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX"));
+        var startDateTime = ZonedDateTime.of(start, ZoneId.systemDefault())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX"));
+        var endDateTime = ZonedDateTime.of(end, ZoneId.systemDefault())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX"));
         parameters.add(new QueryParam("startDateTime", startDateTime));
         parameters.add(new QueryParam("endDateTime", endDateTime));
 
-        var uri = this.baseUrl + "/" + calendar.id + "/calendarView?" + QueryParam.toQueryString(parameters);
+        var uri = this.baseUrl + "/calendarView?" + QueryParam.toQueryString(parameters);
         var result = this.client.GET(uri);
-        return StreamSupport.stream(new PagingSpliterator<>(client, result, EventImpl::new),false);
+        return StreamSupport.stream(new PagingSpliterator<>(client, result, EventImpl::new), false);
     }
 
     @Override
-    public EventResource events(ID<Calendar> calendar) {
-        return new EventResourceImpl(client, baseUrl + "/" + calendar.id);
+    public EventsResource events() {
+        return new EventsResourceImpl(client, baseUrl + "/events");
     }
 
-    @Override
-    public Calendar create(Calendar calendar) {
-        var uri = this.baseUrl;
-        var result = this.client.POST(uri, ((CalendarImpl)calendar).object);
-        return new CalendarImpl(result);
-    }
-    
-    static class CalendarQueryImpl extends QueryImpl<Calendar> implements CalendarQuery {
-
-        public CalendarQueryImpl(String baseUrl, GraphClientImpl client) {
-            super(baseUrl, client, CalendarImpl::new);
-        }
-    }
 }
