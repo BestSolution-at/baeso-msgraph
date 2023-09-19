@@ -1,6 +1,7 @@
 package at.bestsolution.baeso.msgraph.impl;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 import at.bestsolution.baeso.msgraph.EventResource;
 import at.bestsolution.baeso.msgraph.impl.model.EventAcceptImpl;
@@ -13,6 +14,7 @@ import at.bestsolution.baeso.msgraph.model.EventAccept;
 import at.bestsolution.baeso.msgraph.model.EventCancel;
 import at.bestsolution.baeso.msgraph.model.EventForward;
 import at.bestsolution.baeso.msgraph.model.EventUpdate;
+import at.bestsolution.baeso.msgraph.model.EventUpdate.Builder;
 
 public class EventResourceImpl implements EventResource {
     private final GraphClientImpl client;
@@ -40,8 +42,18 @@ public class EventResourceImpl implements EventResource {
     }
 
     @Override
+    public Event update(Function<Builder, EventUpdate> update) {
+        return update( update.apply(new EventUpdateImpl.EventUpdateBuilderImpl()) );
+    }
+
+    @Override
     public void forward(EventForward forward) {
         client.POST(baseUrl + "/forward", ((EventForwardImpl) forward).object);
+    }
+
+    @Override
+    public void forward(Function<EventForward.Builder, EventForward> forward) {
+        forward(forward.apply(new EventForwardImpl.EventForwardBuilderImpl()));
     }
 
     @Override
@@ -50,8 +62,17 @@ public class EventResourceImpl implements EventResource {
     }
 
     @Override
+    public void cancel(Function<EventCancel.Builder, EventCancel> cancel) {
+        cancel(cancel.apply(new EventCancelImpl.EventCancelBuilderImpl()));
+    }
+
+    @Override
     public void accept(EventAccept accept) {
         client.POST(baseUrl + "/accept", ((EventAcceptImpl) accept).object);
     }
 
+    @Override
+    public void accept(Function<EventAccept.Builder, EventAccept> accept) {
+        accept(accept.apply(new EventAcceptImpl.EventAcceptBuilderImpl()));
+    }
 }

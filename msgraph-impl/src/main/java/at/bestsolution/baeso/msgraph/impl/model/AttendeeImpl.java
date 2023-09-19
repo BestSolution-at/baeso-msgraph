@@ -1,8 +1,6 @@
 package at.bestsolution.baeso.msgraph.impl.model;
 
-import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 import javax.json.Json;
 import javax.json.JsonObject;

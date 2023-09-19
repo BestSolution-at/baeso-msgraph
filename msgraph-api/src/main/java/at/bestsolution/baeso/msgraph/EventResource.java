@@ -1,6 +1,7 @@
 package at.bestsolution.baeso.msgraph;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.base.Query;
@@ -158,7 +159,49 @@ public interface EventResource {
      */
     public Event update(EventUpdate update);
 
-    // delta()
+    /**
+     * <p>
+     * Note the following behaviors or recommendations when updating the
+     * corresponding properties:
+     * <ul>
+     * <li>attendees property and meeting updates
+     * <ul>
+     * <li>An event update that includes only the <strong>attendees</strong>
+     * property in the request body sends a meeting update to only the attendees
+     * that have changed.</li>
+     * <li>An event update that removes an attendee specified as a member of a
+     * distribution list sends a meeting update to all the attendees.</li>
+     * </ul>
+     * </li>
+     * <li>body property and online meetings
+     * <p>
+     * Before updating the body of an event that has been set up as an online
+     * meeting, be sure to first get the <strong>body</strong> property, apply the
+     * appropriate
+     * changes to the content, and preserve the meeting blob for online meeting.
+     * Inadvertently removing the meeting blob from the body would disable meeting
+     * online.
+     * </p>
+     * </li>
+     * <li><strong>end</strong> and <strong>start</strong> properties and their time
+     * zones
+     * <p>
+     * When updating the time zone of the start or end time of an event, first
+     * <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/outlookuser-supportedtimezones?view=graph-rest-1.0">find
+     * the supported time zones</a> to make sure you set only time zones that have
+     * been
+     * configured for the user's mailbox server.
+     * </p>
+     * </li>
+     * </ul>
+     * </p>
+     * 
+     * @param update function to build the update
+     * @return the updated event provider
+     */
+    public Event update(Function<EventUpdate.Builder, EventUpdate> update);
+
     /**
      * <p>
      * This action allows the organizer or attendee of a meeting <a href=
@@ -176,6 +219,24 @@ public interface EventResource {
      * @param forward the forward info
      */
     public void forward(EventForward forward);
+
+    /**
+     * <p>
+     * This action allows the organizer or attendee of a meeting <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
+     * to forward the meeting request to a new recipient.
+     * </p>
+     * <p>
+     * If the meeting event is forwarded from an attendee's Microsoft 365 mailbox to
+     * another recipient, this action also sends a message to notify the organizer
+     * of the forwarding, and adds the recipient to the organizer's copy of the
+     * meeting event. This convenience is not available when forwarding from an
+     * Outlook.com account.
+     * </p>
+     * 
+     * @param forward the forward info provider
+     */
+    public void forward(Function<EventForward.Builder, EventForward> forward);
 
     /**
      * <p>
@@ -205,6 +266,33 @@ public interface EventResource {
     public void cancel(EventCancel cancel);
 
     /**
+     * <p>
+     * This action allows the organizer of a meeting to send a cancellation message
+     * and cancel the event.
+     * </p>
+     * <p>
+     * The action moves the event to the Deleted Items folder. The organizer can
+     * also cancel an occurrence of a recurring meeting by providing the occurrence
+     * event ID. An attendee calling this action gets an error (HTTP 400 Bad
+     * Request), with the following error message:
+     * </p>
+     * <p>
+     * "Your request can't be completed. You need to be an organizer to cancel a
+     * meeting."
+     * </p>
+     * <p>
+     * This action differs from <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0">Delete</a>
+     * in that <strong>Cancel</strong> is available to only the
+     * organizer, and lets the organizer send a custom message to the attendees
+     * about the cancellation.
+     * </p>
+     * 
+     * @param cancel the cancel info provider
+     */
+    public void cancel(Function<EventCancel.Builder, EventCancel> cancel);
+
+    /**
      * Accept the specified <a href=
      * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
      * in a user <a href=
@@ -213,4 +301,17 @@ public interface EventResource {
      * @param accept the accept info
      */
     public void accept(EventAccept accept);
+
+    /**
+     * Accept the specified <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
+     * in a user <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0">calendar</a>.
+     * 
+     * @param accept the accept info provider
+     */
+    public void accept(Function<EventAccept.Builder, EventAccept> accept);
+
+
+    // TBD delta()
 }
