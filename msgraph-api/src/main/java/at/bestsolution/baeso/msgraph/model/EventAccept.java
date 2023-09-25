@@ -1,6 +1,8 @@
 package at.bestsolution.baeso.msgraph.model;
 
-public interface EventAccept {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface EventAccept extends MsGraphData {
     /**
      * Text included in the response. Optional.
      * 

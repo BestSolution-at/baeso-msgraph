@@ -4,8 +4,9 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 import at.bestsolution.baeso.msgraph.base.ID;
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
 
-public interface User {
+public interface User extends MsGraphData {
 	public enum AgeGroup {
 		NULL("null"),
 		MINOR("Minor"),

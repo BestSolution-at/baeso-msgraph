@@ -1,6 +1,8 @@
 package at.bestsolution.baeso.msgraph.model;
 
-public interface Phone {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface Phone extends MsGraphData {
     public enum PhoneType {
         HOME("home"), 
         BUSINESS("business"), 

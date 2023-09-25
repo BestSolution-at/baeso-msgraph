@@ -1,6 +1,8 @@
 package at.bestsolution.baeso.msgraph.model;
 
-public interface AttendeeBase extends Recipient {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface AttendeeBase extends Recipient, MsGraphData {
     public enum Type {
         REQUIRED("required"),
         OPTIONAL("optional"),

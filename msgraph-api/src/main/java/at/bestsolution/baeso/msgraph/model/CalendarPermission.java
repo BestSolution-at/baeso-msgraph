@@ -1,5 +1,7 @@
 package at.bestsolution.baeso.msgraph.model;
 
-public interface CalendarPermission {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface CalendarPermission extends MsGraphData {
     
 }

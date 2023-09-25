@@ -6,6 +6,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import at.bestsolution.baeso.msgraph.base.ID;
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
 
 /**
  * <p>
@@ -24,7 +25,7 @@ import at.bestsolution.baeso.msgraph.base.ID;
  * limits</a>.
  * </p>
  */
-public interface Event {
+public interface Event extends MsGraphData {
     public enum Importance {
         LOW("low"),
         NORMAL("normal"),

@@ -9,7 +9,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 
-public class CalendarImpl implements Calendar {
+public class CalendarImpl implements Calendar, JSONSerializable {
     public final JsonObject object;
 
     public CalendarImpl(JsonObject object) {
@@ -84,6 +84,11 @@ public class CalendarImpl implements Calendar {
     @Override
     public String toString() {
         return JsonUtils.stringify(object, true);
+    }
+
+    @Override
+    public String toJson() {
+        return JsonUtils.stringify(object, false);
     }
 
     public static class CalendarBuilderImpl implements Calendar.Builder {

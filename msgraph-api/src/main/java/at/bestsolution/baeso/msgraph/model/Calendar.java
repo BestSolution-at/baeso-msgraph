@@ -1,8 +1,9 @@
 package at.bestsolution.baeso.msgraph.model;
 
 import at.bestsolution.baeso.msgraph.base.ID;
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
 
-public interface Calendar {
+public interface Calendar extends MsGraphData {
     public enum Color {
         AUTO("auto"),
         LIGHT_BLUE("lightBlue"),

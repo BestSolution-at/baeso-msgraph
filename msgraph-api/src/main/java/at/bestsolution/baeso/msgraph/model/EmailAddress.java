@@ -1,6 +1,8 @@
 package at.bestsolution.baeso.msgraph.model;
 
-public interface EmailAddress {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface EmailAddress extends MsGraphData {
     String address();
     String name();
 

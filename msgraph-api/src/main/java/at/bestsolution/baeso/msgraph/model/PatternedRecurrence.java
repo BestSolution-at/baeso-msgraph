@@ -2,7 +2,9 @@ package at.bestsolution.baeso.msgraph.model;
 
 import java.util.function.Function;
 
-public interface PatternedRecurrence {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface PatternedRecurrence extends MsGraphData {
     public RecurrencePattern pattern();
     public RecurrenceRange range();
 

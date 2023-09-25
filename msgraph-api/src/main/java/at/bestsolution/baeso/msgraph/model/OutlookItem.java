@@ -3,7 +3,9 @@ package at.bestsolution.baeso.msgraph.model;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-public interface OutlookItem {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface OutlookItem extends MsGraphData {
     /**
      * The categories associated with the item
      * 

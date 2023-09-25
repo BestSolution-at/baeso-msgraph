@@ -1,9 +1,11 @@
 package at.bestsolution.baeso.msgraph.model;
 
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
 /**
  * The geographic coordinates, elevation, and their degree of accuracy for a physical location.
  */
-public interface OutlookGeoCoordinates {
+public interface OutlookGeoCoordinates extends MsGraphData {
     /**
      * The accuracy of the latitude and longitude. As an example, the accuracy can be measured in meters, 
      * such as the latitude and longitude are accurate to within 50 meters.

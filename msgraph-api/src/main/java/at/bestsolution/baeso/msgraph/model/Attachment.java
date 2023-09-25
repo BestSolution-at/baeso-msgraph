@@ -2,7 +2,9 @@ package at.bestsolution.baeso.msgraph.model;
 
 import java.time.ZonedDateTime;
 
-public interface Attachment {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface Attachment extends MsGraphData {
     String contentType();
     String id();
     boolean isInline();

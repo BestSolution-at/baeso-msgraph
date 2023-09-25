@@ -1,6 +1,8 @@
 package at.bestsolution.baeso.msgraph.model;
 
-public interface EventCancel {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface EventCancel extends MsGraphData {
     /**
      * A comment about the cancellation sent to all the attendees. Optional.
      * @return value

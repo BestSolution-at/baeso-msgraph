@@ -2,7 +2,9 @@ package at.bestsolution.baeso.msgraph.model;
 
 import java.util.List;
 
-public interface OnlineMeetingInfo {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface OnlineMeetingInfo extends MsGraphData {
     String conferenceId();
     String joinUrl();
     List<Phone> phones();

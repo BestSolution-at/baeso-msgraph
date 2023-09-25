@@ -1,9 +1,11 @@
 package at.bestsolution.baeso.msgraph.model;
 
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
 /**
  * Represents the street address of a resource such as a contact or event.
  */
-public interface PhysicalAddress {
+public interface PhysicalAddress extends MsGraphData {
     /**
      * The city.
      * @return value

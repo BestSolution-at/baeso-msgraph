@@ -3,11 +3,12 @@ package at.bestsolution.baeso.msgraph.model;
 import java.time.ZonedDateTime;
 import java.util.List;
 
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
 import at.bestsolution.baeso.msgraph.model.Event.OnlineMeetingProviderType;
 import at.bestsolution.baeso.msgraph.model.Event.Sensitivity;
 import at.bestsolution.baeso.msgraph.model.Event.ShowAs;
 
-public interface EventUpdate {
+public interface EventUpdate extends MsGraphData {
     List<Attendee> attendees();
     ItemBody body();
     List<String> categories();

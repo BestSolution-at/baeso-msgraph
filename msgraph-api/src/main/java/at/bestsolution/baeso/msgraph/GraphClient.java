@@ -1,5 +1,8 @@
 package at.bestsolution.baeso.msgraph;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ServiceLoader;
 
 import at.bestsolution.baeso.msgraph.auth.AccessTokenProvider;
@@ -17,6 +20,10 @@ public interface GraphClient {
 	}
 	
 	public <T> T createBuilder(Class<T> clazz);
+
+	public void serialize(Object value, OutputStream stream) throws IOException;
+
+	public <T> T deserialize(InputStream stream) throws IOException;
 
 	public static GraphClient create(AccessTokenProvider accessTokenProvider) {
 		return ServiceLoader.load(GraphClientFactory.class)

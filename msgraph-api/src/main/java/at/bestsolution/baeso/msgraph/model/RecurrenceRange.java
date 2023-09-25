@@ -2,7 +2,9 @@ package at.bestsolution.baeso.msgraph.model;
 
 import java.time.LocalDate;
 
-public interface RecurrenceRange {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface RecurrenceRange extends MsGraphData {
     public enum RecurrenceRangeType {
         END_DATE("endDate"), 
         NO_END("noEnd"), 

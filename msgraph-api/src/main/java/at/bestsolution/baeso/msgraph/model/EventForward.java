@@ -2,7 +2,9 @@ package at.bestsolution.baeso.msgraph.model;
 
 import java.util.List;
 
-public interface EventForward {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface EventForward extends MsGraphData {
     String comment();
     List<Recipient> toRecipients();
 

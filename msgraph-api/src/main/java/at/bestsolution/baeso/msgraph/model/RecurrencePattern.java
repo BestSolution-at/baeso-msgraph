@@ -3,7 +3,9 @@ package at.bestsolution.baeso.msgraph.model;
 import java.time.DayOfWeek;
 import java.util.List;
 
-public interface RecurrencePattern {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface RecurrencePattern extends MsGraphData {
     public enum WeekIndex {
         FIRST("first"),
         SECOND("second"),

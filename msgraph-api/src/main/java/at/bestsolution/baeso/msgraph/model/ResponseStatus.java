@@ -2,7 +2,9 @@ package at.bestsolution.baeso.msgraph.model;
 
 import java.time.ZonedDateTime;
 
-public interface ResponseStatus {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface ResponseStatus extends MsGraphData {
     
     // public Response response();
     public ZonedDateTime time();

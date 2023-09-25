@@ -1,6 +1,8 @@
 package at.bestsolution.baeso.msgraph.model;
 
-public interface Location {
+import at.bestsolution.baeso.msgraph.base.MsGraphData;
+
+public interface Location extends MsGraphData {
     public enum LocationType {
         DEFAULT("default"), 
         CONFERENCEROOM("conferenceRoom"),

@@ -13,7 +13,7 @@ import at.bestsolution.baeso.msgraph.model.RecurrenceRange;
 public class PatternedRecurrenceImpl implements PatternedRecurrence {
     public final JsonObject object;
 
-    PatternedRecurrenceImpl(JsonObject object) {
+    public PatternedRecurrenceImpl(JsonObject object) {
         this.object = object;
     }
 
