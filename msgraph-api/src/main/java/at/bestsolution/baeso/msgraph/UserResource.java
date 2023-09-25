@@ -2,6 +2,7 @@ package at.bestsolution.baeso.msgraph;
 
 import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.model.Calendar;
+import at.bestsolution.baeso.msgraph.model.User;
 
 public interface UserResource {	
 	public CalendarsResource calendars();
@@ -10,4 +11,6 @@ public interface UserResource {
 	}
 	
 	public CalendarGroupResource calendarGroups();
+
+	public User get();
 }
