@@ -225,6 +225,9 @@ public class EventImpl implements Event {
 
     @Override
     public ID<Event> seriesMasterId() {
+        if( object.isNull("seriesMasterId") ){
+            return null;
+        }
         return ID.of(object.getString("seriesMasterId"));
     }
 

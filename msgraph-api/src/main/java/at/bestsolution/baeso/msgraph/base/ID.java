@@ -10,4 +10,9 @@ public class ID<T> {
 	public static final <T> ID<T> of(String id) {
 		return new ID<>(id);
 	}
+
+	@Override
+	public String toString() {
+		return this.id;
+	}
 }
