@@ -309,8 +309,14 @@ public class EventImpl implements Event {
         }
 
         @Override
+        public Builder withAttendeesSingle(
+                Function<Attendee.Builder, Attendee> builder) {
+            return attendees(List.of(builder.apply(new AttendeeImpl.AttendeeBuilderImpl())));
+        }
+
+        @Override
         public <T> Builder withAttendees(List<T> input,
-                BiFunction<at.bestsolution.baeso.msgraph.model.Attendee.Builder, T, Attendee> builder) {
+                BiFunction<Attendee.Builder, T, Attendee> builder) {
             return attendees(input.stream().map( v -> builder.apply(new AttendeeImpl.AttendeeBuilderImpl(), v)).collect(Collectors.toList()));
         }
 

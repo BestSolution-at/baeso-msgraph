@@ -594,6 +594,8 @@ public interface Event extends MsGraphData {
 
         public <T> Builder withAttendees(List<T> input, BiFunction<Attendee.Builder, T, Attendee> builder);
 
+        public Builder withAttendeesSingle(Function<Attendee.Builder, Attendee> builder);
+
         public Builder allowNewTimeProposals(boolean allowNewTimeProposals);
 
         public Builder responseRequested(boolean responseRequested);
