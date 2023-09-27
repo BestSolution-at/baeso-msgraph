@@ -6,6 +6,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import at.bestsolution.baeso.msgraph.base.ID;
+import at.bestsolution.baeso.msgraph.base.IndexBuilderFunction;
 import at.bestsolution.baeso.msgraph.base.MsGraphData;
 
 /**
@@ -589,7 +590,7 @@ public interface Event extends MsGraphData {
 
         public Builder attendees(List<Attendee> attendees);
 
-        public Builder withAttendees(int count, Function<Attendee.Builder, Attendee> builder);
+        public Builder withAttendees(int count, IndexBuilderFunction<Attendee.Builder, Attendee> builder);
 
         public <T> Builder withAttendees(List<T> input, BiFunction<Attendee.Builder, T, Attendee> builder);
 

@@ -11,6 +11,8 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import at.bestsolution.baeso.msgraph.base.ID;
+import at.bestsolution.baeso.msgraph.base.IndexBuilderFunction;
+import at.bestsolution.baeso.msgraph.impl.utils.BuilderUtils;
 import at.bestsolution.baeso.msgraph.impl.utils.DateUtils;
 import at.bestsolution.baeso.msgraph.impl.utils.JsonUtils;
 import at.bestsolution.baeso.msgraph.model.Attendee;
@@ -302,8 +304,8 @@ public class EventImpl implements Event {
 
         @Override
         public Builder withAttendees(int count,
-                Function<at.bestsolution.baeso.msgraph.model.Attendee.Builder, Attendee> builder) {
-            return attendees(IntStream.of(count).mapToObj( v -> builder.apply(new AttendeeImpl.AttendeeBuilderImpl()) ).collect(Collectors.toList()));
+                IndexBuilderFunction<Attendee.Builder, Attendee> builder) {
+            return attendees(BuilderUtils.createList(count, AttendeeImpl.AttendeeBuilderImpl::new, builder));
         }
 
         @Override
