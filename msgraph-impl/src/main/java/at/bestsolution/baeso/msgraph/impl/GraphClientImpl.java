@@ -18,8 +18,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import javax.json.Json;
-import javax.json.JsonObject;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 
 import at.bestsolution.baeso.msgraph.GraphClient;
 import at.bestsolution.baeso.msgraph.UsersResource;
