@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-import javax.json.Json;
-import javax.json.JsonObject;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
 
 public class DateUtils {
     public static ZonedDateTime toZonedDateTime(JsonObject dateTimeTimeZone) {

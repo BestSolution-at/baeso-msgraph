@@ -24,9 +24,9 @@ import at.bestsolution.baeso.msgraph.model.PatternedRecurrence;
 import at.bestsolution.baeso.msgraph.model.Recipient;
 import at.bestsolution.baeso.msgraph.model.ResponseStatus;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 public class EventImpl implements Event {
     public final JsonObject object;

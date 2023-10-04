@@ -6,13 +6,13 @@ import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collector.Characteristics;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import javax.json.JsonValue;
-import javax.json.JsonValue.ValueType;
-import javax.json.stream.JsonGenerator;
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonValue;
+import jakarta.json.JsonValue.ValueType;
+import jakarta.json.stream.JsonGenerator;
 
 public class JsonUtils {
     public static String stringify(JsonObject object, boolean pretty) {

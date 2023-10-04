@@ -7,7 +7,7 @@ import at.bestsolution.baeso.msgraph.model.User;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 public class UserImpl implements User {
 	private JsonObject object;

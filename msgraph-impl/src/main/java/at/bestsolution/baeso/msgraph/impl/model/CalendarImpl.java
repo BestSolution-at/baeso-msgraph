@@ -5,9 +5,9 @@ import at.bestsolution.baeso.msgraph.impl.utils.JsonUtils;
 import at.bestsolution.baeso.msgraph.model.Calendar;
 import at.bestsolution.baeso.msgraph.model.EmailAddress;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import jakarta.json.Json;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonObjectBuilder;
 
 public class CalendarImpl implements Calendar, JSONSerializable {
     public final JsonObject object;

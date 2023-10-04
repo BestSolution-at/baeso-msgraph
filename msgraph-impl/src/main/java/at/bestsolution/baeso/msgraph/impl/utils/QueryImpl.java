@@ -10,7 +10,7 @@ import java.util.stream.StreamSupport;
 
 import at.bestsolution.baeso.msgraph.base.Query;
 import at.bestsolution.baeso.msgraph.impl.GraphClientImpl;
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 public class QueryImpl<T> implements Query<T> {
     private final String baseUrl;

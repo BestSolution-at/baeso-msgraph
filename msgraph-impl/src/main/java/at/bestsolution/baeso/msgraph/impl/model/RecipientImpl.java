@@ -1,6 +1,6 @@
 package at.bestsolution.baeso.msgraph.impl.model;
 
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 import at.bestsolution.baeso.msgraph.model.EmailAddress;
 import at.bestsolution.baeso.msgraph.model.Recipient;

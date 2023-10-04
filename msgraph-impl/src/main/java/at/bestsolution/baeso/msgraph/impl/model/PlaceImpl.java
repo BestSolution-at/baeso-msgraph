@@ -2,7 +2,7 @@ package at.bestsolution.baeso.msgraph.impl.model;
 
 import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.model.Place;
-import javax.json.JsonObject;
+import jakarta.json.JsonObject;
 
 public class PlaceImpl implements Place {
     private JsonObject object;
