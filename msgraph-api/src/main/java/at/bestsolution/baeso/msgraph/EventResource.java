@@ -3,13 +3,14 @@ package at.bestsolution.baeso.msgraph;
 import java.util.Optional;
 import java.util.function.Function;
 
-import at.bestsolution.baeso.msgraph.base.ID;
-import at.bestsolution.baeso.msgraph.base.Query;
 import at.bestsolution.baeso.msgraph.model.Event;
 import at.bestsolution.baeso.msgraph.model.EventAccept;
 import at.bestsolution.baeso.msgraph.model.EventCancel;
+import at.bestsolution.baeso.msgraph.model.EventDecline;
 import at.bestsolution.baeso.msgraph.model.EventUpdate;
 import at.bestsolution.baeso.msgraph.model.EventForward;
+import at.bestsolution.baeso.msgraph.model.EventSnoozeReminder;
+import at.bestsolution.baeso.msgraph.model.EventTentativelyAccept;
 
 /**
  * <p>
@@ -312,6 +313,119 @@ public interface EventResource {
      */
     public void accept(Function<EventAccept.Builder, EventAccept> accept);
 
+    /**
+     * <p>
+     * Tentatively accept the specified <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
+     * in a user <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0">calendar</a>.
+     * </p>
+     * <p>
+     * If the event allows proposals for new times, on responding tentative to the
+     * event, an invitee can choose to suggest an alternative time by including the
+     * <strong>proposedNewTime</strong> parameter. For more information on how to
+     * propose a time, and
+     * how to receive and accept a new time proposal, see <a href=
+     * "https://learn.microsoft.com/en-us/graph/outlook-calendar-meeting-proposals">Propose
+     * new meeting times</a>.
+     * </p>
+     * 
+     * @param tentativelyAccept the accept action
+     */
+    public void tentativelyAccept(EventTentativelyAccept tentativelyAccept);
+
+    /**
+     * <p>
+     * Tentatively accept the specified <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
+     * in a user <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0">calendar</a>.
+     * </p>
+     * <p>
+     * If the event allows proposals for new times, on responding tentative to the
+     * event, an invitee can choose to suggest an alternative time by including the
+     * <strong>proposedNewTime</strong> parameter. For more information on how to
+     * propose a time, and
+     * how to receive and accept a new time proposal, see <a href=
+     * "https://learn.microsoft.com/en-us/graph/outlook-calendar-meeting-proposals">Propose
+     * new meeting times</a>.
+     * </p>
+     * 
+     * @param tentativelyAccept the accept provider
+     */
+    public void tentativelyAccept(Function<EventTentativelyAccept.Builder, EventTentativelyAccept> tentativelyAccept);
+
+    /**
+     * <p>
+     * Decline invitation to the specified <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
+     * in a user <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0">calendar</a>.
+     * </p>
+     * <p>
+     * If the event allows proposals for new times, on declining the event, an
+     * invitee can choose to suggest an alternative time by including the
+     * <strong>proposedNewTime</strong> parameter. For more information on how to
+     * propose a time, and
+     * how to receive and accept a new time proposal, see <a href=
+     * "https://learn.microsoft.com/en-us/graph/outlook-calendar-meeting-proposals">Propose
+     * new meeting times</a>.
+     * </p>
+     * 
+     * @param decline the info
+     */
+    public void decline(EventDecline decline);
+
+    /**
+     * <p>
+     * Decline invitation to the specified <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
+     * in a user <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0">calendar</a>.
+     * </p>
+     * <p>
+     * If the event allows proposals for new times, on declining the event, an
+     * invitee can choose to suggest an alternative time by including the
+     * <strong>proposedNewTime</strong> parameter. For more information on how to
+     * propose a time, and
+     * how to receive and accept a new time proposal, see <a href=
+     * "https://learn.microsoft.com/en-us/graph/outlook-calendar-meeting-proposals">Propose
+     * new meeting times</a>.
+     * </p>
+     * 
+     * @param decline the info provider
+     */
+    public void decline(Function<EventDecline.Builder, EventDecline> decline);
+
+    /**
+     * Dismiss a reminder that has been triggered for an <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
+     * in a user <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0">calendar</a>.
+     */
+    public void dismissReminder();
+
+    /**
+     * Postpone a reminder for an <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
+     * in a user <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0">calendar</a>
+     * until a new time.
+     * 
+     * @param snoozeReminder the info
+     */
+    public void snoozeReminder(EventSnoozeReminder snoozeReminder);
+
+    /**
+     * Postpone a reminder for an <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
+     * in a user <a href=
+     * "https://learn.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0">calendar</a>
+     * until a new time.
+     * 
+     * @param snoozeReminder the info provider
+     */
+    public void snoozeReminder(Function<EventSnoozeReminder.Builder, EventSnoozeReminder> snoozeReminder);
 
     // TBD delta()
 }

@@ -46,4 +46,13 @@ public interface OutlookItem extends MsGraphData {
      * @return value
      */
     ZonedDateTime lastModifiedDateTime();
+
+    public interface Builder {
+        public OutlookItem build();
+        Builder categories(List<String> categories);
+        Builder changeKey(String changeKey);
+        Builder createdDateTime(ZonedDateTime createdDateTime);
+        Builder id(String id);
+        Builder lastModifiedDateTime(ZonedDateTime lastModifiedDateTime);
+    }
 }

@@ -16,11 +16,11 @@
 	<distributionManagement>
 		<repository>
 			<id>beso-private-releases</id>
-			<url>http://nexus.ci.bestsolution.at:8081/repository/beso-private-releases/</url>
+			<url>https://nexus.ci.bestsolution.at/repository/beso-private-releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>beso-private-snapshots</id>
-			<url>http://nexus.ci.bestsolution.at:8081/repository/beso-private-snapshots/</url>
+			<url>https://nexus.ci.bestsolution.at/repository/beso-private-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 

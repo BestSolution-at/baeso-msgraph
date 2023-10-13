@@ -1,5 +1,7 @@
 package at.bestsolution.baeso.msgraph.model;
 
+import java.util.function.Function;
+
 import at.bestsolution.baeso.msgraph.base.MsGraphData;
 
 public interface Location extends MsGraphData {
@@ -84,4 +86,19 @@ public interface Location extends MsGraphData {
      * @return value
      */
     String uniqueIdType();
+
+    public interface Builder {
+        Builder address(PhysicalAddress address);
+        Builder withAddress(Function<PhysicalAddress.Builder, PhysicalAddress> builder);
+
+        Builder coordinates(OutlookGeoCoordinates coordinates);
+        Builder withCoordinates(Function<OutlookGeoCoordinates.Builder, OutlookGeoCoordinates> coordinates);
+
+        Builder displayName(String displayName);
+        Builder locationEmailAddress(String locationEmailAddress);
+        Builder locationUri(String locationUri);
+        Builder locationType(LocationType locationType);
+        // String uniqueId();
+        // String uniqueIdType();
+    }
 }

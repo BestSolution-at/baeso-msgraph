@@ -145,6 +145,25 @@ public class GraphClientImpl implements GraphClient {
 		return sendRequest(request);
 	}
 
+	public void POST_VOID(String url, JsonObject payload) {
+		HttpRequest request = HttpRequest.newBuilder()
+			.uri(URI.create(url))
+			.header("Authorization", "Bearer " + provider.getAccessToken(url).join())
+			.header("Content-Type", "application/json")
+			.POST(BodyPublishers.ofString(JsonUtils.stringify(payload, false)))
+			.build();
+		sendVoidRequest(request);
+	}
+
+	public void POST_VOID(String url) {
+		HttpRequest request = HttpRequest.newBuilder()
+			.uri(URI.create(url))
+			.header("Authorization", "Bearer " + provider.getAccessToken(url).join())
+			.header("Content-Type", "application/json")
+			.build();
+		sendVoidRequest(request);
+	}
+
 	public JsonObject PATCH(String url, JsonObject payload) {
 		HttpRequest request = HttpRequest.newBuilder()
 			.uri(URI.create(url))
@@ -177,6 +196,9 @@ public class GraphClientImpl implements GraphClient {
 		try {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 			var responseBody = response.body();
+			if( response.statusCode() >= 300 ) {
+				System.err.println(responseBody);
+			}
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);
 		}
@@ -186,7 +208,10 @@ public class GraphClientImpl implements GraphClient {
 		try {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 			var responseBody = response.body();
-			// System.err.println(responseBody);
+			if( response.statusCode() >= 300 ) {
+				System.err.println(responseBody);
+			}
+			
 			var reader = Json.createReader(new StringReader(responseBody));
 			return reader.readObject();
 		} catch (IOException | InterruptedException e) {

@@ -32,4 +32,12 @@ public interface OutlookGeoCoordinates extends MsGraphData {
      * @return value
      */
     double longitude();
+
+    public interface Builder {
+        Builder accuracy(double accuracy);
+        Builder altitude(double altitude);
+        Builder altitudeAccuracy(double altitudeAccuracy);
+        Builder latitude(double latitude);
+        Builder longitude(double longitude);
+    }
 }

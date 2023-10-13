@@ -484,7 +484,7 @@ public interface Event extends MsGraphData {
      * 
      * @return value
      */
-    public PatternedRecurrence recurrence();
+    PatternedRecurrence recurrence();
 
     /**
      * The number of minutes before the event start time that the reminder alert
@@ -498,7 +498,7 @@ public interface Event extends MsGraphData {
      * Default is <code>true</code>, which represents the organizer would like an
      * invitee to send a response to the event.
      */
-    public boolean responseRequested();
+    boolean responseRequested();
 
     /**
      * Indicates the type of response sent in response to an event message.
@@ -580,29 +580,74 @@ public interface Event extends MsGraphData {
     // singleValueExtendedProperties
 
     public interface Builder {
-        public Event build();
+        Event build();
 
-        public Builder start(ZonedDateTime start);
+        Builder start(ZonedDateTime start);
 
-        public Builder end(ZonedDateTime end);
+        Builder end(ZonedDateTime end);
 
-        public Builder subject(String subject);
+        Builder subject(String subject);
 
-        public Builder attendees(List<Attendee> attendees);
+        Builder attendees(List<Attendee> attendees);
 
-        public Builder withAttendees(int count, IndexBuilderFunction<Attendee.Builder, Attendee> builder);
+        Builder withAttendees(int count, IndexBuilderFunction<Attendee.Builder, Attendee> builder);
 
-        public <T> Builder withAttendees(List<T> input, BiFunction<Attendee.Builder, T, Attendee> builder);
+        <T> Builder withAttendees(List<T> input, BiFunction<Attendee.Builder, T, Attendee> builder);
 
-        public Builder withAttendeesSingle(Function<Attendee.Builder, Attendee> builder);
+        Builder withAttendeesSingle(Function<Attendee.Builder, Attendee> builder);
 
-        public Builder allowNewTimeProposals(boolean allowNewTimeProposals);
+        Builder allowNewTimeProposals(boolean allowNewTimeProposals);
 
-        public Builder responseRequested(boolean responseRequested);
+        Builder responseRequested(boolean responseRequested);
 
-        public Builder recurrence(PatternedRecurrence recurrence);
+        Builder recurrence(PatternedRecurrence recurrence);
 
-        public Builder withRecurrence(Function<PatternedRecurrence.Builder, PatternedRecurrence> builder);
-        // public Builder body();
+        Builder withRecurrence(Function<PatternedRecurrence.Builder, PatternedRecurrence> builder);
+        
+        Builder body(ItemBody body);
+
+        Builder withBody(Function<ItemBody.Builder, ItemBody> builder);
+
+        Builder bodyPreview(String bodyPreview);
+
+        Builder categories(List<String> categories);
+        // String changeKey(String changeKey);
+        // ZonedDateTime createdDateTime(ZonedDateTime createdDateTime);
+        // boolean hasAttachments(boolean hasAttachments);
+        Builder hideAttendees(boolean hideAttendees);
+        // String iCalUId(String iCalUId);
+        Builder importance(Importance importance);
+        // Builder isAllDay(boolean isAllDay);
+        // Builder isCancelled(boolean isCancelled);
+        // boolean isDraft(boolean isDraft);
+        // boolean isOnlineMeeting(boolean isOnlineMeeting);
+        // boolean isOrganizer(boolean isOrganizer);
+        // boolean isReminderOn(boolean isReminderOn);
+        // ZonedDateTime lastModifiedDateTime(ZonedDateTime lastModifiedDateTime);
+        Builder location(Location location);
+        Builder withLocation(Function<Location.Builder, Location> builder);
+
+        // List<Location> locations(List<Location> locations);
+
+        Builder onlineMeeting(OnlineMeetingInfo onlineMeeting);
+        Builder withOnlineMeeting(Function<OnlineMeetingInfo.Builder, OnlineMeetingInfo> builder);
+
+        OnlineMeetingProviderType onlineMeetingProvider(OnlineMeetingProviderType onlineMeetingProvider);
+        String onlineMeetingUrl(String onlineMeetingUrl);
+        
+        // Recipient organizer(Recipient organizer);
+
+        String originalEndTimeZone(String originalEndTimeZone);
+        ZonedDateTime originalStart(ZonedDateTime originalStart);
+        String originalStartTimeZone(String originalStartTimeZone);
+        int reminderMinutesBeforeStart(int reminderMinutesBeforeStart);
+        // ResponseStatus responseStatus(ResponseStatus responseStatus);
+        Sensitivity sensitivity(Sensitivity sensitivity);
+        // ID<Event> seriesMasterId(ID<Event> seriesMasterId);
+        ShowAs showAs(ShowAs showAs);
+        String transactionId(String transactionId);
+        Type type(Type type);
+        String webLink(String webLink);
+
     }
 }

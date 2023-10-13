@@ -32,4 +32,12 @@ public interface PhysicalAddress extends MsGraphData {
      */
     String street();
 
+    public interface Builder {
+        PhysicalAddress build();
+        Builder city(String city);
+        Builder countryOrRegion(String countryOrRegion);
+        Builder postalCode(String postalCode);
+        Builder state(String state);
+        Builder street(String street);
+    }
 }

@@ -10,6 +10,7 @@ import jakarta.json.JsonObjectBuilder;
 import at.bestsolution.baeso.msgraph.impl.utils.DateUtils;
 import at.bestsolution.baeso.msgraph.impl.utils.JsonUtils;
 import at.bestsolution.baeso.msgraph.model.Attendee;
+import at.bestsolution.baeso.msgraph.model.Event.Importance;
 import at.bestsolution.baeso.msgraph.model.Event.OnlineMeetingProviderType;
 import at.bestsolution.baeso.msgraph.model.Event.Sensitivity;
 import at.bestsolution.baeso.msgraph.model.Event.ShowAs;
@@ -56,9 +57,9 @@ public class EventUpdateImpl implements EventUpdate {
     }
 
     @Override
-    public boolean importance() {
+    public Importance importance() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'importance'");
+        throw new UnsupportedOperationException("Unimplemented method 'importance'"); 
     }
 
     @Override
@@ -178,12 +179,6 @@ public class EventUpdateImpl implements EventUpdate {
         }
 
         @Override
-        public Builder importance(boolean importance) {
-            builder.add("importance", importance);
-            return this;
-        }
-
-        @Override
         public Builder isAllDay(boolean isAllDay) {
             builder.add("isAllDay", isAllDay);
             return this;
@@ -259,6 +254,12 @@ public class EventUpdateImpl implements EventUpdate {
         public Builder subject(String subject) {
             builder.add("subject", subject);
             return this;
+        }
+
+        @Override
+        public Builder importance(Importance importance) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'importance'");
         }
     }
 }

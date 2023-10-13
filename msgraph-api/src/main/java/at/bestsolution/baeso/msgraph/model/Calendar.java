@@ -1,9 +1,24 @@
 package at.bestsolution.baeso.msgraph.model;
 
+import java.util.List;
+import java.util.function.Function;
+
 import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.base.MsGraphData;
 
+/**
+ * <p>
+ * Represents a container for <a href=
+ * "https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0">event</a>
+ * resources. It can be a calendar for a user,
+ * or the default calendar of a Microsoft 365 <a href=
+ * "https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0">group</a>.
+ * </p>
+ */
 public interface Calendar extends MsGraphData {
+    /**
+     * Color of the calendar
+     */
     public enum Color {
         AUTO("auto"),
         LIGHT_BLUE("lightBlue"),
@@ -77,14 +92,14 @@ public interface Calendar extends MsGraphData {
      * 
      * @return value
      */
-    public ID<Calendar> id();
+    ID<Calendar> id();
 
     /**
      * The calendar name.
      * 
      * @return value
      */
-    public String name();
+    String name();
 
     /**
      * <code>true</code> if the user can write to the calendar, <code>false</code>
@@ -94,7 +109,7 @@ public interface Calendar extends MsGraphData {
      * 
      * @return
      */
-    public boolean canEdit();
+    boolean canEdit();
 
     /**
      * <code>true</code> if the user has the permission to share the calendar,
@@ -103,7 +118,7 @@ public interface Calendar extends MsGraphData {
      * 
      * @return value
      */
-    public boolean canShare();
+    boolean canShare();
 
     /**
      * <code>true</code> if the user can read calendar items that have been marked
@@ -187,11 +202,43 @@ public interface Calendar extends MsGraphData {
      */
     EmailAddress owner();
 
-    // allowedOnlineMeetingProviders
+    /**
+     * Represent the online meeting service providers that can be used to create
+     * online meetings in this calendar. Possible values are: <code>unknown</code>,
+     * <code>skypeForBusiness</code>, <code>skypeForConsumer</code>,
+     * <code>teamsForBusiness</code>.
+     * 
+     * @return the value
+     */
+    List<OnlineMeetingProviderType> allowedOnlineMeetingProviders();
 
     public interface Builder {
         public Calendar build();
 
-        public Builder name(String name);
+        Builder name(String name);
+
+        Builder canEdit(boolean canEdit);
+
+        Builder canShare(boolean canShare);
+
+        Builder canViewPrivateItems(boolean canViewPrivateItems);
+
+//        Builder changeKey(String changeKey);
+
+        Builder color(Color color);
+
+        Builder defaultOnlineMeetingProvider(OnlineMeetingProviderType defaultOnlineMeetingProvider);
+
+//        Builder hexColor(String hexColor);
+
+        Builder isDefaultCalendar(boolean isDefaultCalendar);
+
+        Builder isRemovable(boolean isRemovable);
+
+        Builder isTallyingResponses(boolean isTallyingResponses);
+
+//        Builder owner(EmailAddress owner);
+
+//        Builder withOwner(Function<EmailAddress.Builder, EmailAddress> builder);
     }
 }

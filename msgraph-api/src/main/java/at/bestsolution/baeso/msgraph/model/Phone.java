@@ -44,4 +44,10 @@ public interface Phone extends MsGraphData {
 
     String number();
     PhoneType type();
+
+    public interface Builder {
+        Phone build();
+        Builder number(String number);
+        Builder type(PhoneType type);
+    }
 }

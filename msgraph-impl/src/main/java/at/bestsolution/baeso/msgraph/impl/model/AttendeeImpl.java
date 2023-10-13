@@ -9,6 +9,8 @@ import jakarta.json.JsonObjectBuilder;
 import at.bestsolution.baeso.msgraph.impl.utils.JsonUtils;
 import at.bestsolution.baeso.msgraph.model.Attendee;
 import at.bestsolution.baeso.msgraph.model.EmailAddress;
+import at.bestsolution.baeso.msgraph.model.ResponseStatus;
+import at.bestsolution.baeso.msgraph.model.TimeSlot;
 
 public class AttendeeImpl implements Attendee {
     public final JsonObject object;
@@ -30,6 +32,18 @@ public class AttendeeImpl implements Attendee {
     @Override
     public String toString() {
         return JsonUtils.stringify(object, true);
+    }
+
+    @Override
+    public TimeSlot proposedNewTime() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'proposedNewTime'");
+    }
+
+    @Override
+    public ResponseStatus status() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'status'");
     }
 
     public static class AttendeeBuilderImpl implements Attendee.Builder {
@@ -56,5 +70,32 @@ public class AttendeeImpl implements Attendee {
         public Attendee build() {
             return new AttendeeImpl(builder.build());
         }
+
+        @Override
+        public Builder proposedNewTime(TimeSlot proposedNewTime) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'proposedNewTime'");
+        }
+
+        @Override
+        public Builder withProposedNewTime(
+                Function<at.bestsolution.baeso.msgraph.model.TimeSlot.Builder, TimeSlot> builder) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'withProposedNewTime'");
+        }
+
+        @Override
+        public Builder status(ResponseStatus status) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'status'");
+        }
+
+        @Override
+        public Builder withStatus(
+                Function<at.bestsolution.baeso.msgraph.model.ResponseStatus.Builder, ResponseStatus> builder) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'withStatus'");
+        }
     }
+
 }

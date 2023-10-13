@@ -1,5 +1,7 @@
 package at.bestsolution.baeso.msgraph.impl.model;
 
+import java.util.List;
+
 import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.impl.utils.JsonUtils;
 import at.bestsolution.baeso.msgraph.model.Calendar;
@@ -91,6 +93,11 @@ public class CalendarImpl implements Calendar, JSONSerializable {
         return JsonUtils.stringify(object, false);
     }
 
+    @Override
+    public List<OnlineMeetingProviderType> allowedOnlineMeetingProviders() {
+        throw new UnsupportedOperationException();
+    }
+
     public static class CalendarBuilderImpl implements Calendar.Builder {
         private JsonObjectBuilder builder = Json.createObjectBuilder();
 
@@ -101,8 +108,57 @@ public class CalendarImpl implements Calendar, JSONSerializable {
         }
 
         @Override
-        public Calendar build() {            
+        public Calendar build() {
             return new CalendarImpl(builder.build());
         }
+
+        @Override
+        public Builder canEdit(boolean canEdit) {
+            builder.add("canEdit", canEdit);
+            return this;
+        }
+
+        @Override
+        public Builder canShare(boolean canShare) {
+            builder.add("canShare", canShare);
+            return this;
+        }
+
+        @Override
+        public Builder canViewPrivateItems(boolean canViewPrivateItems) {
+            builder.add("canViewPrivateItems", canViewPrivateItems);
+            return this;
+        }
+
+        @Override
+        public Builder color(Color color) {
+            builder.add("color", color.value());
+            return this;
+        }
+
+        @Override
+        public Builder defaultOnlineMeetingProvider(OnlineMeetingProviderType defaultOnlineMeetingProvider) {
+            builder.add("defaultOnlineMeetingProvider", defaultOnlineMeetingProvider.value());
+            return this;
+        }
+
+        @Override
+        public Builder isDefaultCalendar(boolean isDefaultCalendar) {
+            builder.add("isDefaultCalendar", isDefaultCalendar);
+            return this;
+        }
+
+        @Override
+        public Builder isRemovable(boolean isRemovable) {
+            builder.add("isRemovable", isRemovable);
+            return this;
+        }
+
+        @Override
+        public Builder isTallyingResponses(boolean isTallyingResponses) {
+            builder.add("isTallyingResponses", isTallyingResponses);
+            return this;
+        }
     }
+
 }

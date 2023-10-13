@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.base.IndexBuilderFunction;
@@ -47,12 +45,12 @@ public class EventImpl implements Event {
 
     @Override
     public ZonedDateTime start() {
-        return DateUtils.toZonedDateTime(object.getJsonObject("start")).withZoneSameInstant(ZoneId.systemDefault());
+        return DateUtils.toZonedDateTime(object.getJsonObject("start"));
     }
 
     @Override
     public ZonedDateTime end() {
-        return DateUtils.toZonedDateTime(object.getJsonObject("end")).withZoneSameInstant(ZoneId.systemDefault());
+        return DateUtils.toZonedDateTime(object.getJsonObject("end"));
     }
 
     @Override
@@ -339,6 +337,133 @@ public class EventImpl implements Event {
 
         public Event build() {
             return new EventImpl(builder.build());
+        }
+
+        @Override
+        public Builder body(ItemBody body) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'body'");
+        }
+
+        @Override
+        public Builder withBody(Function<at.bestsolution.baeso.msgraph.model.ItemBody.Builder, ItemBody> builder) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'withBody'");
+        }
+
+        @Override
+        public Builder bodyPreview(String bodyPreview) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'bodyPreview'");
+        }
+
+        @Override
+        public Builder categories(List<String> categories) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'categories'");
+        }
+
+        @Override
+        public Builder hideAttendees(boolean hideAttendees) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'hideAttendees'");
+        }
+
+        @Override
+        public Builder importance(Importance importance) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'importance'");
+        }
+
+        @Override
+        public Builder location(Location location) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'location'");
+        }
+
+        @Override
+        public Builder withLocation(Function<at.bestsolution.baeso.msgraph.model.Location.Builder, Location> builder) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'withLocation'");
+        }
+
+        @Override
+        public Builder onlineMeeting(OnlineMeetingInfo onlineMeeting) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'onlineMeeting'");
+        }
+
+        @Override
+        public Builder withOnlineMeeting(
+                Function<at.bestsolution.baeso.msgraph.model.OnlineMeetingInfo.Builder, OnlineMeetingInfo> builder) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'withOnlineMeeting'");
+        }
+
+        @Override
+        public OnlineMeetingProviderType onlineMeetingProvider(OnlineMeetingProviderType onlineMeetingProvider) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'onlineMeetingProvider'");
+        }
+
+        @Override
+        public String onlineMeetingUrl(String onlineMeetingUrl) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'onlineMeetingUrl'");
+        }
+
+        @Override
+        public String originalEndTimeZone(String originalEndTimeZone) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'originalEndTimeZone'");
+        }
+
+        @Override
+        public ZonedDateTime originalStart(ZonedDateTime originalStart) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'originalStart'");
+        }
+
+        @Override
+        public String originalStartTimeZone(String originalStartTimeZone) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'originalStartTimeZone'");
+        }
+
+        @Override
+        public int reminderMinutesBeforeStart(int reminderMinutesBeforeStart) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'reminderMinutesBeforeStart'");
+        }
+
+        @Override
+        public Sensitivity sensitivity(Sensitivity sensitivity) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'sensitivity'");
+        }
+
+        @Override
+        public ShowAs showAs(ShowAs showAs) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'showAs'");
+        }
+
+        @Override
+        public String transactionId(String transactionId) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'transactionId'");
+        }
+
+        @Override
+        public Type type(Type type) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'type'");
+        }
+
+        @Override
+        public String webLink(String webLink) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'webLink'");
         }
     }
 }
