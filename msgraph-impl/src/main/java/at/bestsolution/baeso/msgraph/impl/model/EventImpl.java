@@ -1,8 +1,6 @@
 package at.bestsolution.baeso.msgraph.impl.model;
 
-import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -214,8 +212,10 @@ public class EventImpl implements Event {
 
     @Override
     public ResponseStatus responseStatus() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'responseStatus'");
+        if( ! object.containsKey("responseStatus") ) {
+            return null;
+        }
+        return new ResponseStatusImpl(object.getJsonObject("responseStatus"));
     }
 
     @Override
@@ -333,6 +333,12 @@ public class EventImpl implements Event {
         @Override
         public Builder withRecurrence(Function<PatternedRecurrence.Builder, PatternedRecurrence> builder) {
             return recurrence(builder.apply(new PatternedRecurrenceImpl.PatternedRecurrenceBuilderImpl()));
+        }
+
+        @Override
+        public Builder isAllDay(boolean isAllDay) {
+            builder.add("isAllDay", isAllDay);
+            return this;
         }
 
         public Event build() {
@@ -465,5 +471,6 @@ public class EventImpl implements Event {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'webLink'");
         }
+        
     }
 }

@@ -197,7 +197,7 @@ public class GraphClientImpl implements GraphClient {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 			var responseBody = response.body();
 			if( response.statusCode() >= 300 ) {
-				System.err.println(responseBody);
+				System.err.println(responseBody); // Sample {"error":{"code":"ErrorInvalidRequest","message":"Your request can't be completed. The duration of an event marked as All day must be at least 24 hours."}}
 			}
 		} catch (IOException | InterruptedException e) {
 			throw new IllegalStateException(e);

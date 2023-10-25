@@ -617,7 +617,7 @@ public interface Event extends MsGraphData {
         Builder hideAttendees(boolean hideAttendees);
         // String iCalUId(String iCalUId);
         Builder importance(Importance importance);
-        // Builder isAllDay(boolean isAllDay);
+        Builder isAllDay(boolean isAllDay);
         // Builder isCancelled(boolean isCancelled);
         // boolean isDraft(boolean isDraft);
         // boolean isOnlineMeeting(boolean isOnlineMeeting);
