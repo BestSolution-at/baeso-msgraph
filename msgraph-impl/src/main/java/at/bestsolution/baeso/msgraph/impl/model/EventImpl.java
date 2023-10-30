@@ -186,8 +186,7 @@ public class EventImpl implements Event {
 
     @Override
     public Recipient organizer() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'organizer'");
+        return new RecipientImpl(object.getJsonObject("organizer"));
     }
 
     @Override
