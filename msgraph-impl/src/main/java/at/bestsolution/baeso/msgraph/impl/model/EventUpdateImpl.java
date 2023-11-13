@@ -139,6 +139,11 @@ public class EventUpdateImpl implements EventUpdate {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'subject'");
     }
+
+    @Override
+    public String toString() {
+        return JsonUtils.stringify(object, true);
+    }
     
     public static class EventUpdateBuilderImpl implements EventUpdate.Builder {
         private final JsonObjectBuilder builder = Json.createObjectBuilder();

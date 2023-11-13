@@ -48,6 +48,7 @@ import at.bestsolution.baeso.msgraph.model.Calendar;
 import at.bestsolution.baeso.msgraph.model.EmailAddress;
 import at.bestsolution.baeso.msgraph.model.Event;
 import at.bestsolution.baeso.msgraph.model.EventUpdate;
+import at.bestsolution.baeso.msgraph.model.PatternedRecurrence;
 
 public class GraphClientImpl implements GraphClient {
 	final AccessTokenProvider provider;
@@ -82,6 +83,7 @@ public class GraphClientImpl implements GraphClient {
 		registerBuilderCreator(EmailAddress.Builder.class, EmailAddressImpl.EmailAddressBuilderImpl::new);
 		registerBuilderCreator(Attendee.Builder.class, AttendeeImpl.AttendeeBuilderImpl::new);
 		registerBuilderCreator(EventUpdate.Builder.class, EventUpdateImpl.EventUpdateBuilderImpl::new);
+		registerBuilderCreator(PatternedRecurrence.Builder.class, PatternedRecurrenceImpl.PatternedRecurrenceBuilderImpl::new);
 	}
 
 	private static void registerObjectCreator(Class<?> clazz, Function<JsonObject, Object> constructor) {
@@ -175,6 +177,7 @@ public class GraphClientImpl implements GraphClient {
 	}
 
 	public JsonObject GET(String url) {
+		System.err.println("GET: " + url);
 		HttpRequest request = HttpRequest.newBuilder()
 			.uri(URI.create(url))
 			.header("Authorization", "Bearer " + provider.getAccessToken(url).join())

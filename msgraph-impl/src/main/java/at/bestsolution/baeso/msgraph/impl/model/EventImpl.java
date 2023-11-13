@@ -66,12 +66,12 @@ public class EventImpl implements Event {
 
     @Override
     public String bodyPreview() {
-        return object.getString("bodyPreview");
+        return object.getString("bodyPreview", null);
     }
 
     @Override
     public String changeKey() {
-        return object.getString("changeKey");
+        return object.getString("changeKey", null);
     }
 
     @Override
@@ -81,67 +81,62 @@ public class EventImpl implements Event {
 
     @Override
     public boolean hasAttachments() {
-        return object.getBoolean("hasAttachments");
+        return object.getBoolean("hasAttachments", false);
     }
 
     @Override
     public boolean hideAttendees() {
-        return object.getBoolean("hideAttendees");
+        return object.getBoolean("hideAttendees", false);
     }
 
     @Override
     public String iCalUId() {
-        return object.getString("iCalUId");
+        return object.getString("iCalUId", null);
     }
 
     @Override
     public Importance importance() {
-        return Importance.of(object.getString("importance"));
+        return JsonUtils.mapString(object, "importance", Importance::of, Importance.NORMAL);
     }
 
     @Override
     public boolean isAllDay() {
-        return object.getBoolean("isAllDay");
+        return object.getBoolean("isAllDay", false);
     }
 
     @Override
     public boolean isCancelled() {
-        return object.getBoolean("isCancelled");
+        return object.getBoolean("isCancelled", false);
     }
 
     @Override
     public boolean isDraft() {
-        return object.getBoolean("isDraft");
+        return object.getBoolean("isDraft", false);
     }
 
     @Override
     public boolean isOnlineMeeting() {
-        return object.getBoolean("isOnlineMeeting");
+        return object.getBoolean("isOnlineMeeting", false);
     }
 
     @Override
     public boolean isOrganizer() {
-        return object.getBoolean("isOrganizer");
+        return object.getBoolean("isOrganizer", false);
     }
 
     @Override
     public boolean isReminderOn() {
-        return object.getBoolean("isReminderOn");
+        return object.getBoolean("isReminderOn", false);
     }
 
     @Override
     public ZonedDateTime lastModifiedDateTime() {
-        return ZonedDateTime.parse(object.getString("lastModifiedDateTime"));
+        return JsonUtils.mapString(object, "lastModifiedDateTime", ZonedDateTime::parse);
     }
 
     @Override
     public List<Attendee> attendees() {
-        var attendees = object.getJsonArray("attendees");
-        return attendees.stream()
-            .map(JsonObject.class::cast)
-            .map(AttendeeImpl::new)
-            .map(Attendee.class::cast)
-            .toList();
+        return JsonUtils.mapObjects(object, "attendees", AttendeeImpl::new);
     }
 
     @Override
@@ -151,57 +146,52 @@ public class EventImpl implements Event {
 
     @Override
     public PatternedRecurrence recurrence() {
-        return new PatternedRecurrenceImpl(object.getJsonObject("recurrence"));
+        return JsonUtils.mapObject(object, "recurrence", PatternedRecurrenceImpl::new);
     }
 
     @Override
     public Location location() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'locations'");
+        return JsonUtils.mapObject(object, "location", LocationImpl::new);
     }
 
     @Override
     public List<Location> locations() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'locations'");
+        return JsonUtils.mapObjects(object, "locations", LocationImpl::new);
     }
 
     @Override
     public OnlineMeetingInfo onlineMeeting() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onlineMeeting'");
+        return JsonUtils.mapObject(object, "onlineMeeting", OnlineMeetingInfoImpl::new);
     }
 
     @Override
     public OnlineMeetingProviderType onlineMeetingProvider() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onlineMeetingProvider'");
+        return JsonUtils.mapString(object, "onlineMeetingProvider", OnlineMeetingProviderType::of, OnlineMeetingProviderType.UNKNOWN);
     }
 
     @Override
     public String onlineMeetingUrl() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onlineMeetingUrl'");
+        return object.getString("onlineMeetingUrl", null);
     }
 
     @Override
     public Recipient organizer() {
-        return new RecipientImpl(object.getJsonObject("organizer"));
+        return JsonUtils.mapObject(object, "organizer", RecipientImpl::new);
     }
 
     @Override
     public String originalEndTimeZone() {
-        return object.getString("originalEndTimeZone");
+        return object.getString("originalEndTimeZone", null);
     }
 
     @Override
     public ZonedDateTime originalStart() {
-        return ZonedDateTime.parse(object.getString("originalStart"));
+        return JsonUtils.mapString(object, "originalStart", ZonedDateTime::parse);
     }
 
     @Override
     public String originalStartTimeZone() {
-        return object.getString("originalStartTimeZone");
+        return object.getString("originalStartTimeZone", null);
     }
 
     @Override
@@ -211,50 +201,42 @@ public class EventImpl implements Event {
 
     @Override
     public ResponseStatus responseStatus() {
-        if( ! object.containsKey("responseStatus") ) {
-            return null;
-        }
-        return new ResponseStatusImpl(object.getJsonObject("responseStatus"));
+        return JsonUtils.mapObject(object, "responseStatus", ResponseStatusImpl::new);
     }
 
     @Override
     public Sensitivity sensitivity() {
-        return Sensitivity.of(object.getString("sensitivity"));
+        return JsonUtils.mapString(object, "sensitivity", Sensitivity::of, Sensitivity.NORMAL);
     }
 
     @Override
     public ID<Event> seriesMasterId() {
-        if( object.isNull("seriesMasterId") ){
-            return null;
-        }
-        return ID.of(object.getString("seriesMasterId"));
+        return JsonUtils.mapString(object, "seriesMasterId", ID::of);
     }
 
     @Override
     public ShowAs showAs() {
-        return ShowAs.of(object.getString("showAs"));
+        return JsonUtils.mapString(object, "showAs", ShowAs::of, ShowAs.UNKNOWN);
     }
 
     @Override
     public String transactionId() {
-        return object.getString("transactionId");
+        return object.getString("transactionId", null);
     }
 
     @Override
     public Type type() {
-        return Type.of(object.getString("type"));
+        return JsonUtils.mapString(object, "type", Type::of, null);
     }
 
     @Override
     public String webLink() {
-        return object.getString("webLink");
+        return object.getString("webLink", null);
     }
 
     @Override
     public List<String> categories() {
-        return object.getJsonArray("categories").stream()
-            .map(e -> e.toString())
-            .collect(Collectors.toUnmodifiableList());
+        return JsonUtils.mapStrings(object, "categories");
     }
 
     @Override
