@@ -1,12 +1,9 @@
 package at.bestsolution.baeso.msgraph.impl;
 
 import at.bestsolution.baeso.msgraph.CalendarGroupResource;
-import at.bestsolution.baeso.msgraph.CalendarResource;
 import at.bestsolution.baeso.msgraph.CalendarsResource;
 import at.bestsolution.baeso.msgraph.UserResource;
-import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.impl.model.UserImpl;
-import at.bestsolution.baeso.msgraph.model.Calendar;
 import at.bestsolution.baeso.msgraph.model.User;
 
 public class UserResourceImpl implements UserResource {

@@ -1,7 +1,5 @@
 package at.bestsolution.baeso.msgraph.impl.utils;
 
-import java.net.URI;
-import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -17,11 +15,20 @@ public class QueryImpl<T> implements Query<T> {
     private final GraphClientImpl client;
     private final Function<JsonObject, T> factory;
     protected final List<QueryParam> queryParmeters = new ArrayList<>();
+    private final boolean supportPaging;
 
     public QueryImpl(String baseUrl, GraphClientImpl client, Function<JsonObject, T> factory) {
         this.baseUrl = baseUrl;
         this.client = client;
         this.factory = factory;
+        this.supportPaging = true;
+    }
+
+    public QueryImpl(String baseUrl, GraphClientImpl client, Function<JsonObject, T> factory, boolean supportPaging) {
+        this.baseUrl = baseUrl;
+        this.client = client;
+        this.factory = factory;
+        this.supportPaging = supportPaging;
     }
 
     @Override
@@ -31,10 +38,12 @@ public class QueryImpl<T> implements Query<T> {
 
     @Override
     public Stream<T> stream(int pageSize) {
-        queryParmeters.add(new QueryParam("$top", Integer.toString(pageSize)));
-        queryParmeters.add(new QueryParam("$count", "true"));
+        if( supportPaging ) {
+            queryParmeters.add(new QueryParam("$top", Integer.toString(pageSize)));
+            // queryParmeters.add(new QueryParam("$count", "true")); 
+        }
 
-        var uri = baseUrl + "?" + QueryParam.toQueryString(queryParmeters);
+        var uri = queryParmeters.isEmpty() ? baseUrl : baseUrl + "?" + QueryParam.toQueryString(queryParmeters);
         
         System.err.println(uri);
         var result = client.GET(uri);
@@ -44,6 +53,10 @@ public class QueryImpl<T> implements Query<T> {
         
         if( array.size() == 0 ) {
             return Stream.empty();
+        }
+
+        if( ! supportPaging ) {
+            return array.getValuesAs(JsonObject.class).stream().map(factory);
         }
         
         return StreamSupport.stream(new PagingSpliterator<>(client, result, factory), false);

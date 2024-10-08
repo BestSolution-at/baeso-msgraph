@@ -18,6 +18,8 @@ public interface GraphClient {
 	public default UserResource user(String userPrincipalName) {
 		return users().user(userPrincipalName);
 	}
+	public GroupsResource groups();
+	public TeamsResource teams();
 	
 	public <T> T createBuilder(Class<T> clazz);
 

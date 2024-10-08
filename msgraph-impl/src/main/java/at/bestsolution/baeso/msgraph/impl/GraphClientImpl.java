@@ -22,6 +22,8 @@ import jakarta.json.Json;
 import jakarta.json.JsonObject;
 
 import at.bestsolution.baeso.msgraph.GraphClient;
+import at.bestsolution.baeso.msgraph.GroupsResource;
+import at.bestsolution.baeso.msgraph.TeamsResource;
 import at.bestsolution.baeso.msgraph.UsersResource;
 import at.bestsolution.baeso.msgraph.auth.AccessTokenProvider;
 import at.bestsolution.baeso.msgraph.base.ID;
@@ -103,6 +105,16 @@ public class GraphClientImpl implements GraphClient {
 	@Override
 	public UsersResource users() {
 		return new UsersResourceImpl(this);
+	}
+
+	@Override
+	public GroupsResource groups() {
+		return new GroupsResourceImpl(this);
+	}
+
+	@Override
+	public TeamsResource teams() {
+		return new TeamsResourceImpl(this);
 	}
 
 	@Override
