@@ -9,4 +9,5 @@ public interface ChatMessagesResource {
 	}
 
     public ChatMessageQuery query();
+    public ChatMessage create(ChatMessage event);
 }

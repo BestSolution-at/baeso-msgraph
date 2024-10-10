@@ -4,9 +4,11 @@ import at.bestsolution.baeso.msgraph.ChatMessagesResource;
 import at.bestsolution.baeso.msgraph.ConversationsResource.ConversationQuery;
 import at.bestsolution.baeso.msgraph.impl.model.ChatMessageImpl;
 import at.bestsolution.baeso.msgraph.impl.model.ConversationThreadImpl;
+import at.bestsolution.baeso.msgraph.impl.model.EventImpl;
 import at.bestsolution.baeso.msgraph.impl.utils.QueryImpl;
 import at.bestsolution.baeso.msgraph.model.ChatMessage;
 import at.bestsolution.baeso.msgraph.model.ConversationThread;
+import at.bestsolution.baeso.msgraph.model.Event;
 
 public class ChatMessagesResourceImpl implements ChatMessagesResource {
     private final GraphClientImpl client;
@@ -20,6 +22,12 @@ public class ChatMessagesResourceImpl implements ChatMessagesResource {
     @Override
     public ChatMessageQuery query() {
         return new ChatMessageQueryImpl(baseUrl, client);
+    }
+
+    @Override
+    public ChatMessage create(ChatMessage event) {
+        var result = this.client.POST(this.baseUrl, ((ChatMessageImpl)event).object);
+        return new ChatMessageImpl(result);
     }
 
     static class ChatMessageQueryImpl extends QueryImpl<ChatMessage> implements ChatMessageQuery {

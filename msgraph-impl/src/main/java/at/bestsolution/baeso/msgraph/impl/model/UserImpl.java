@@ -192,8 +192,7 @@ public class UserImpl implements User {
 
 	@Override
 	public String mail() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'mail'");
+		return object.getString("mail");
 	}
 
 	@Override
@@ -360,8 +359,7 @@ public class UserImpl implements User {
 
 	@Override
 	public String surname() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'surname'");
+		return object.getString("surname", "");
 	}
 
 	@Override

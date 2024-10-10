@@ -30,6 +30,7 @@ import at.bestsolution.baeso.msgraph.base.ID;
 import at.bestsolution.baeso.msgraph.impl.model.AttendeeImpl;
 import at.bestsolution.baeso.msgraph.impl.model.CalendarGroupImpl;
 import at.bestsolution.baeso.msgraph.impl.model.CalendarImpl;
+import at.bestsolution.baeso.msgraph.impl.model.ChatMessageImpl;
 import at.bestsolution.baeso.msgraph.impl.model.EmailAddressImpl;
 import at.bestsolution.baeso.msgraph.impl.model.EventAcceptImpl;
 import at.bestsolution.baeso.msgraph.impl.model.EventCancelImpl;
@@ -47,6 +48,7 @@ import at.bestsolution.baeso.msgraph.impl.model.UserImpl;
 import at.bestsolution.baeso.msgraph.impl.utils.JsonUtils;
 import at.bestsolution.baeso.msgraph.model.Attendee;
 import at.bestsolution.baeso.msgraph.model.Calendar;
+import at.bestsolution.baeso.msgraph.model.ChatMessage;
 import at.bestsolution.baeso.msgraph.model.EmailAddress;
 import at.bestsolution.baeso.msgraph.model.Event;
 import at.bestsolution.baeso.msgraph.model.EventUpdate;
@@ -86,6 +88,7 @@ public class GraphClientImpl implements GraphClient {
 		registerBuilderCreator(Attendee.Builder.class, AttendeeImpl.AttendeeBuilderImpl::new);
 		registerBuilderCreator(EventUpdate.Builder.class, EventUpdateImpl.EventUpdateBuilderImpl::new);
 		registerBuilderCreator(PatternedRecurrence.Builder.class, PatternedRecurrenceImpl.PatternedRecurrenceBuilderImpl::new);
+		registerBuilderCreator(ChatMessage.Builder.class, ChatMessageImpl.ChatMessageBuilderImpl::new);
 	}
 
 	private static void registerObjectCreator(Class<?> clazz, Function<JsonObject, Object> constructor) {
