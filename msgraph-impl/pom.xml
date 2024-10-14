@@ -11,7 +11,7 @@
 		<dependency>
 			<groupId>at.bestsolution.baeso.msgraph</groupId>
 			<artifactId>msgraph-api</artifactId>
-			<version>${revision}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>jakarta.json</groupId>
